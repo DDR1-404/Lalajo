@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.favorite.FavoriteFragment">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:layout_height="?attr/actionBarSize">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:id="@+id/tab_movie"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/title_movie"
+                android:textSize="15sp"
+                android:textColor="@color/colorAccent"
+                android:id="@+id/tvmovie"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_gravity="bottom"
+                android:id="@+id/view1"
+                android:background="@color/colorPrimary"
+                android:layout_height="2dp"/>
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:id="@+id/tab_tv"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/title_tv"
+                android:id="@+id/tvtv"
+                android:textColor="@color/colorAccent"
+                android:textSize="15sp"
+                android:layout_height="wrap_content" />
+            <View
+                android:layout_width="match_parent"
+                android:visibility="invisible"
+                android:layout_gravity="bottom"
+                android:background="@color/colorPrimary"
+                android:id="@+id/view2"
+                android:layout_height="2dp"/>
+        </FrameLayout>
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <!--THIS IS CONTAINER-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/containerpage"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

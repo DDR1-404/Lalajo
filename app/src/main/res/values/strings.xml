@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Lalajo</string>
+    <string name="title_movie">Movie</string>
+    <string name="title_tv">TV Show</string>
+    <string name="title_favorite">Favorite</string>
+
+    <string name="movie_title">Avenger Start</string>
+    <string name="movie_date">13 January 1999</string>
+    <string name="movie_description">Dengan ini saya selaku panitia hajatyan mantan apalah dayaku menyatakan kemerdekaan Indonesia oleh sebab itu openjajahan diatas dunia harus dihapuskna</string>
+    <string name="overview">Overview</string>
+    <string name="change_language_settings">Change Language Settings</string>
+    <string name="sub"> Indonesia</string>
+    <string name="release_date">Release Date: </string>
+    <string name="date"> 2019</string>
+    <string name="rating">Rating: </string>
+    <string name="ratings"> 9.9</string>
+    <string name="popularity">Popularity: </string>
+    <string name="_130_000">130,000</string>
+</resources>
