@@ -1,9 +1,16 @@
 package com.ddr1.lalajo.model;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.ddr1.lalajo.db.DatabaseContract;
+
 import org.json.JSONObject;
+
+import static com.ddr1.lalajo.db.DatabaseContract.getColumnInt;
+import static com.ddr1.lalajo.db.DatabaseContract.getColumnString;
+
 
 public class MovieItem implements Parcelable {
 
@@ -15,6 +22,28 @@ public class MovieItem implements Parcelable {
     private String original_language;
     private String popularity;
     private String overview;
+
+    public MovieItem(int id, String poster_path, String title, String release_date, String vote_average, String original_language, String popularity, String overview) {
+        this.id = id;
+        this.poster_path = poster_path;
+        this.title = title;
+        this.release_date = release_date;
+        this.vote_average = vote_average;
+        this.original_language = original_language;
+        this.popularity = popularity;
+        this.overview = overview;
+    }
+
+    public MovieItem(Cursor cursor){
+        this.id = getColumnInt(cursor, DatabaseContract.MoviesColumns.ID);
+        this.poster_path = getColumnString(cursor, DatabaseContract.MoviesColumns.POSTER);
+        this.title = getColumnString(cursor, DatabaseContract.MoviesColumns.TITLE);
+        this.release_date = getColumnString(cursor, DatabaseContract.MoviesColumns.RELEASE_DATE);
+        this.vote_average = getColumnString(cursor, DatabaseContract.MoviesColumns.VOTE);
+        this.original_language = getColumnString(cursor, DatabaseContract.MoviesColumns.LANGUAGE);
+        this.popularity = getColumnString(cursor, DatabaseContract.MoviesColumns.POPULARITY);
+        this.overview = getColumnString(cursor, DatabaseContract.MoviesColumns.OVERVIEW);
+    }
 
     public int getId() {
         return id;

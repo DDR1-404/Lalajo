@@ -16,4 +16,7 @@
     <string name="ratings"> 9.9</string>
     <string name="popularity">Popularity: </string>
     <string name="_130_000">130,000</string>
+    <string name="favorite">Favorite</string>
+    <string name="add_favorite">Add Favorite</string>
+    <string name="delete_favorite">Delete Favorite</string>
 </resources>

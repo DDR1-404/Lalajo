@@ -18,6 +18,8 @@ import com.ddr1.lalajo.view.movies.DetailMovieActivity;
 
 import java.util.ArrayList;
 
+import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.CONTENT_URI;
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
     private final Activity activity;
     private ArrayList<MovieItem> listMovies = new ArrayList<>();
@@ -59,11 +61,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return getMovieList().size();
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    class MovieViewHolder extends RecyclerView.ViewHolder {
         ImageView imgPhoto;
         TextView tvTitle, tvDate, tvDescription;
 
-        public MovieViewHolder(@NonNull View itemView) {
+        MovieViewHolder(@NonNull View itemView) {
             super(itemView);
             imgPhoto = itemView.findViewById(R.id.img_photo);
             tvTitle = itemView.findViewById(R.id.txt_title);
@@ -75,10 +77,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     Intent intent = new Intent(activity, DetailMovieActivity.class);
-                    //intent.putExtra(DetailMovieActivity.EXTRA_POSITION, position);
+                    Uri uri = Uri.parse(CONTENT_URI + "/" + getMovieList().get(position).getId());
+                    intent.setData(uri);
+                    intent.putExtra(DetailMovieActivity.EXTRA_POSITION, position);
                     intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, listMovies.get(position));
-                    //activity.startActivityForResult(intent, DetailMovieActivity.REQUEST_UPDATE);
-                    activity.startActivity(intent);
+                    activity.startActivityForResult(intent, DetailMovieActivity.REQUEST_UPDATE);
+                    //activity.startActivity(intent);
                 }
             });
         }
