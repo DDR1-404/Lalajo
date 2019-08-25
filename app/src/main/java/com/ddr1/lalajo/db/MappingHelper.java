@@ -17,19 +17,19 @@ import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.OVERVIEW;
 
 public class MappingHelper {
 
-    public static ArrayList<MovieItem> mapCursorToArrayList(Cursor notesCursor) {
+    public static ArrayList<MovieItem> mapCursorToArrayList(Cursor movieCursor) {
 
         ArrayList<MovieItem> movieList = new ArrayList<>();
 
-        while (notesCursor.moveToNext()) {
-            int id = notesCursor.getInt(notesCursor.getColumnIndexOrThrow(ID));
-            String poster_path = notesCursor.getString(notesCursor.getColumnIndexOrThrow(POSTER));
-            String title = notesCursor.getString(notesCursor.getColumnIndexOrThrow(TITLE));
-            String release_date = notesCursor.getString(notesCursor.getColumnIndexOrThrow(RELEASE_DATE));
-            String vote_average = notesCursor.getString(notesCursor.getColumnIndexOrThrow(VOTE));
-            String original_language = notesCursor.getString(notesCursor.getColumnIndexOrThrow(LANGUAGE));
-            String popularity = notesCursor.getString(notesCursor.getColumnIndexOrThrow(POPULARITY));
-            String overview = notesCursor.getString(notesCursor.getColumnIndexOrThrow(OVERVIEW));
+        while (movieCursor.moveToNext()) {
+            int id = movieCursor.getInt(movieCursor.getColumnIndexOrThrow(ID));
+            String poster_path = movieCursor.getString(movieCursor.getColumnIndexOrThrow(POSTER));
+            String title = movieCursor.getString(movieCursor.getColumnIndexOrThrow(TITLE));
+            String release_date = movieCursor.getString(movieCursor.getColumnIndexOrThrow(RELEASE_DATE));
+            String vote_average = movieCursor.getString(movieCursor.getColumnIndexOrThrow(VOTE));
+            String original_language = movieCursor.getString(movieCursor.getColumnIndexOrThrow(LANGUAGE));
+            String popularity = movieCursor.getString(movieCursor.getColumnIndexOrThrow(POPULARITY));
+            String overview = movieCursor.getString(movieCursor.getColumnIndexOrThrow(OVERVIEW));
             movieList.add(new MovieItem(id, poster_path, title, release_date, vote_average, original_language, popularity, overview));
         }
         return movieList;

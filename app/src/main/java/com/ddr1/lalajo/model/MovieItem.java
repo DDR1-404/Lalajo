@@ -34,7 +34,7 @@ public class MovieItem implements Parcelable {
         this.overview = overview;
     }
 
-    public MovieItem(Cursor cursor){
+    public MovieItem(Cursor cursor) {
         this.id = getColumnInt(cursor, DatabaseContract.MoviesColumns.ID);
         this.poster_path = getColumnString(cursor, DatabaseContract.MoviesColumns.POSTER);
         this.title = getColumnString(cursor, DatabaseContract.MoviesColumns.TITLE);

@@ -47,12 +47,12 @@ public class FavoriteMovieFragment extends Fragment implements LoadMovieCallback
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_favorite_movie, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorite_movie, container, false);
 
-        progressBar = v.findViewById(R.id.progressBar_fav_movie);
-        RecyclerView rvFavorites = v.findViewById(R.id.rv_movies_fav);
-        rvFavorites.setLayoutManager(new LinearLayoutManager(getActivity()));
-        rvFavorites.setHasFixedSize(true);
+        progressBar = view.findViewById(R.id.progressBar_fav_movie);
+        RecyclerView recyclerView = view.findViewById(R.id.rv_movies_fav);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setHasFixedSize(true);
 
         HandlerThread handlerThread = new HandlerThread("DataObserver");
         handlerThread.start();
@@ -61,7 +61,7 @@ public class FavoriteMovieFragment extends Fragment implements LoadMovieCallback
         Objects.requireNonNull(getActivity()).getContentResolver().registerContentObserver(CONTENT_URI, true, myObserver);
 
         adapter = new MovieAdapter(getActivity());
-        rvFavorites.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
 
         if (savedInstanceState == null) {
             new LoadMoviesAsync(getContext(), this).execute();
@@ -71,7 +71,7 @@ public class FavoriteMovieFragment extends Fragment implements LoadMovieCallback
                 adapter.setData(list);
             }
         }
-        return v;
+        return view;
     }
 
     @Override

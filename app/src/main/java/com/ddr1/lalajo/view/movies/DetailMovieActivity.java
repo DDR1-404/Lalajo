@@ -57,12 +57,12 @@ public class DetailMovieActivity extends AppCompatActivity {
         movieItem = getIntent().getParcelableExtra(EXTRA_MOVIE);
         id = movieItem.getId();
 
-        loadData(id);
+        loadData();
 
         if (movieItem != null) {
             position = getIntent().getIntExtra(EXTRA_POSITION, 0);
             isFavorite = false;
-        }else{
+        } else {
             movieItem = new MovieItem();
         }
 
@@ -76,28 +76,14 @@ public class DetailMovieActivity extends AppCompatActivity {
             }
         }
 
-        if (getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(movieItem.getTitle());
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
-        /* String url_image = "https://image.tmdb.org/t/p/w780" + movieItem.getPoster_path();
-
-        tvDate.setText(movieItem.getRelease_date());
-        tvVote.setText(movieItem.getVote_average());
-        tvPopuler.setText(movieItem.getPopularity());
-        tvSub.setText(movieItem.getOriginal_language());
-        tvTitle.setText(movieItem.getTitle());
-        tvDesc.setText(movieItem.getOverview());
-        Glide.with(DetailMovieActivity.this)
-                .load(url_image)
-                .placeholder(R.color.colorAccent)
-                .dontAnimate()
-                .into(imagePhoto); */
     }
 
-    private void loadData(int id) {
+    private void loadData() {
         String url_image = "https://image.tmdb.org/t/p/w780" + movieItem.getPoster_path();
 
         tvDate.setText(movieItem.getRelease_date());
@@ -123,7 +109,7 @@ public class DetailMovieActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         invalidateOptionsMenu();
 
-        if (item.getItemId() == R.id.favorite){
+        if (item.getItemId() == R.id.favorite) {
 
             if (!isFavorite) {
                 isFavorite = true;
@@ -150,9 +136,9 @@ public class DetailMovieActivity extends AppCompatActivity {
             values.put(POPULARITY, movieItem.getPopularity());
             values.put(OVERVIEW, movieItem.getOverview());
 
-            if (isFavorite){
+            if (isFavorite) {
                 getContentResolver().insert(CONTENT_URI, values);
-            } else{
+            } else {
                 intent.putExtra(EXTRA_POSITION, position);
                 getContentResolver().delete(Objects.requireNonNull(getIntent().getData()), null, null);
             }
@@ -162,17 +148,17 @@ public class DetailMovieActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (isFavorite(id)){
+        if (isFavorite(id)) {
             isFavorite = true;
             menu.getItem(0).setIcon(R.drawable.ic_favorite_black_24dp);
         }
         return super.onPrepareOptionsMenu(menu);
     }
 
-    private boolean isFavorite(int id){
+    private boolean isFavorite(int id) {
         Uri uri = CONTENT_URI.buildUpon().appendPath(String.valueOf(id)).build();
         @SuppressLint("Recycle")
-        Cursor cursor = getContentResolver().query(uri,null,null,null,null);
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         assert cursor != null;
         return cursor.moveToFirst();
     }

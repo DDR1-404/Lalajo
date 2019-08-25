@@ -82,7 +82,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
                     intent.putExtra(DetailMovieActivity.EXTRA_POSITION, position);
                     intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, listMovies.get(position));
                     activity.startActivityForResult(intent, DetailMovieActivity.REQUEST_UPDATE);
-                    //activity.startActivity(intent);
                 }
             });
         }

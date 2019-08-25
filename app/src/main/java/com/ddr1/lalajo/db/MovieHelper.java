@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.ID;
 import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.TABLE_MOVIE;
 
@@ -22,9 +23,9 @@ public class MovieHelper {
     }
 
     public static MovieHelper getInstance(Context context) {
-        if (INSTANCE == null){
-            synchronized (SQLiteOpenHelper.class){
-                if (INSTANCE == null){
+        if (INSTANCE == null) {
+            synchronized (SQLiteOpenHelper.class) {
+                if (INSTANCE == null) {
                     INSTANCE = new MovieHelper(context);
                 }
             }

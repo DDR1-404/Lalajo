@@ -35,8 +35,4 @@ public class DatabaseContract {
         return cursor.getInt(cursor.getColumnIndex(columnName));
     }
 
-    public static double getColumnDouble(Cursor cursor, String columnName) {
-        return cursor.getDouble(cursor.getColumnIndex(columnName));
-    }
-
 }
