@@ -1,6 +1,8 @@
 package com.ddr1.lalajo.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,24 +14,27 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.ddr1.lalajo.R;
 import com.ddr1.lalajo.model.MovieItem;
+import com.ddr1.lalajo.view.movies.DetailMovieActivity;
 
 import java.util.ArrayList;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+    private final Activity activity;
     private ArrayList<MovieItem> listMovies = new ArrayList<>();
 
+    public MovieAdapter(Activity activity) {
+        this.activity = activity;
+    }
+
+    public ArrayList<MovieItem> getMovieList() {
+        return listMovies;
+    }
+
     public void setData(ArrayList<MovieItem> items) {
-        listMovies.clear();
-        listMovies.addAll(items);
+        this.listMovies.clear();
+        this.listMovies.addAll(items);
         notifyDataSetChanged();
     }
-
-    private OnItemClickCallback onItemClickCallback;
-
-    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback;
-    }
-
 
     @NonNull
     @Override
@@ -40,16 +45,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     @Override
     public void onBindViewHolder(@NonNull MovieAdapter.MovieViewHolder holder, int i) {
-        holder.bind(listMovies.get(i));
-    }
-
-    public interface OnItemClickCallback {
-        void onItemClicked(MovieItem data);
+        MovieItem movieItem = getMovieList().get(i);
+        Glide.with(activity)
+                .load("https://image.tmdb.org/t/p/w342" + movieItem.getPoster_path())
+                .into(holder.imgPhoto);
+        holder.tvTitle.setText(movieItem.getTitle());
+        holder.tvDate.setText(movieItem.getRelease_date());
+        holder.tvDescription.setText(movieItem.getOverview());
     }
 
     @Override
     public int getItemCount() {
-        return listMovies.size();
+        return getMovieList().size();
     }
 
     public class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -62,22 +69,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             tvTitle = itemView.findViewById(R.id.txt_title);
             tvDate = itemView.findViewById(R.id.txt_date);
             tvDescription = itemView.findViewById(R.id.txt_description);
-        }
 
-        public void bind(MovieItem movieItem) {
-            String url_image = "https://image.tmdb.org/t/p/w342" + movieItem.getPoster_path();
-            Glide.with(itemView.getContext())
-                    .load(url_image)
-                    .into(imgPhoto);
-            tvTitle.setText(movieItem.getTitle());
-            tvDate.setText(movieItem.getRelease_date());
-            tvDescription.setText(movieItem.getOverview());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickCallback.onItemClicked(listMovies.get(getAdapterPosition()));
+                    int position = getAdapterPosition();
+                    Intent intent = new Intent(activity, DetailMovieActivity.class);
+                    //intent.putExtra(DetailMovieActivity.EXTRA_POSITION, position);
+                    intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, listMovies.get(position));
+                    //activity.startActivityForResult(intent, DetailMovieActivity.REQUEST_UPDATE);
+                    activity.startActivity(intent);
                 }
             });
         }
+
     }
 }

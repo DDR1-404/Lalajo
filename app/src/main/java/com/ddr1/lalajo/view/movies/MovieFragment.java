@@ -41,7 +41,7 @@ public class MovieFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_movie, container, false);
 
-        adapter = new MovieAdapter();
+        adapter = new MovieAdapter(getActivity());
         RecyclerView recyclerView = view.findViewById(R.id.rv_movies);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
@@ -54,21 +54,7 @@ public class MovieFragment extends Fragment {
 
         showLoading(true);
 
-        adapter.setOnItemClickCallback(new MovieAdapter.OnItemClickCallback() {
-            @Override
-            public void onItemClicked(MovieItem data) {
-                showSelectedMovie(data);
-            }
-        });
-
         return view;
-    }
-
-    private void showSelectedMovie(MovieItem movie) {
-        Intent moveWithObjectIntent = new Intent(getActivity(), DetailMovieActivity.class);
-        moveWithObjectIntent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie);
-        startActivity(moveWithObjectIntent);
-
     }
 
     private Observer<ArrayList<MovieItem>> getMovie = new Observer<ArrayList<MovieItem>>() {

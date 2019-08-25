@@ -11,6 +11,8 @@ import com.ddr1.lalajo.model.MovieItem;
 
 public class DetailMovieActivity extends AppCompatActivity {
     public static final String EXTRA_MOVIE = "extra_movie";
+    public static final String EXTRA_POSITION = "extra_position";
+    public static final int REQUEST_UPDATE = 200;
     TextView tvDesc, tvTitle, tvSub, tvDate, tvVote, tvPopuler;
     ImageView imagePhoto;
 
