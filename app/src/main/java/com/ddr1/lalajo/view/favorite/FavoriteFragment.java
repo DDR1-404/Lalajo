@@ -56,28 +56,20 @@ public class FavoriteFragment extends Fragment {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.tab_movie:
-                    //ONSELLER CLICK
-                    //LOAD SELLER FRAGMENT CLASS
                     loadPage(new FavoriteMovieFragment());
 
-                    //WHEN CLICK TEXT COLOR CHANGED
                     tvmovie.setTextColor(getActivity().getResources().getColor(R.color.colorPrimary));
                     tvtv.setTextColor(getActivity().getResources().getColor(R.color.colorAccent));
 
-                    //VIEW VISIBILITY WHEN CLICKED
                     view1.setVisibility(View.VISIBLE);
                     view2.setVisibility(View.INVISIBLE);
                     break;
                 case R.id.tab_tv:
-                    //ONBUYER CLICK
-                    //LOAD BUYER FRAGMENT CLASS
                     loadPage(new FavoriteTVFragment());
 
-                    //WHEN CLICK TEXT COLOR CHANGED
                     tvmovie.setTextColor(getActivity().getResources().getColor(R.color.colorAccent));
                     tvtv.setTextColor(getActivity().getResources().getColor(R.color.colorPrimary));
 
-                    //VIEW VISIBILITY WHEN CLICKED
                     view1.setVisibility(View.INVISIBLE);
                     view2.setVisibility(View.VISIBLE);
                     break;
