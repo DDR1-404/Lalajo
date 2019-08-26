@@ -35,6 +35,13 @@
             android:readPermission="com.ddr1.lalajo.READ_DATABASE"
             android:writePermission="com.ddr1.lalajo.WRITE_DATABASE" />
 
+        <provider
+            android:authorities="com.ddr1.lalajo.tv"
+            android:name=".provider.TVProvider"
+            android:exported="true"
+            android:readPermission="com.ddr1.lalajo.tv.READ_DATABASE"
+            android:writePermission="com.ddr1.lalajo.tv.WRITE_DATABASE" />
+
     </application>
 
 </manifest>

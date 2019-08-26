@@ -151,7 +151,7 @@ public class DetailTVActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (isFavorite(id)) {
             isFavorite = true;
-            menu.getItem(1).setIcon(R.drawable.ic_favorite_black_24dp);
+            menu.getItem(0).setIcon(R.drawable.ic_favorite_black_24dp);
         }
         return super.onPrepareOptionsMenu(menu);
     }

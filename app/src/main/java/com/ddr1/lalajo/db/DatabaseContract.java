@@ -29,7 +29,7 @@ public class DatabaseContract {
 
     public static final class TVColumns implements BaseColumns {
 
-        public static final String AUTHORITY_TV = "com.ddr1.lalajo";
+        public static final String AUTHORITY_TV = "com.ddr1.lalajo.tv";
         private static final String SCHEME_TV = "content";
 
         public static final String TABLE_TV = "tv";
