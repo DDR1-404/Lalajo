@@ -1,5 +1,8 @@
 package com.ddr1.lalajo.adapter;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,23 +14,29 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.ddr1.lalajo.R;
 import com.ddr1.lalajo.model.TVshowItem;
+import com.ddr1.lalajo.view.tvshows.DetailTVActivity;
 
 import java.util.ArrayList;
 
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.CONTENT_URI_TV;
+
 public class TVAdapter extends RecyclerView.Adapter<TVAdapter.TVViewHolder> {
 
+    private final Activity activity;
     private ArrayList<TVshowItem> listTv = new ArrayList<>();
 
-    public void setData(ArrayList<TVshowItem> items) {
-        listTv.clear();
-        listTv.addAll(items);
-        notifyDataSetChanged();
+    public TVAdapter(Activity activity) {
+        this.activity = activity;
     }
 
-    private OnItemClickCallback onItemClickCallback;
+    public ArrayList<TVshowItem> getTvList() {
+        return listTv;
+    }
 
-    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
-        this.onItemClickCallback = onItemClickCallback;
+    public void setData(ArrayList<TVshowItem> items) {
+        this.listTv.clear();
+        this.listTv.addAll(items);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -39,42 +48,41 @@ public class TVAdapter extends RecyclerView.Adapter<TVAdapter.TVViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TVAdapter.TVViewHolder holder, int i) {
-        holder.bind(listTv.get(i));
-    }
-
-    public interface OnItemClickCallback {
-        void onItemClicked(TVshowItem data);
+        TVshowItem tVshowItem = getTvList().get(i);
+        Glide.with(activity)
+                .load("https://image.tmdb.org/t/p/w342" + tVshowItem.getPoster_path())
+                .into(holder.imgPhoto);
+        holder.tvTitle.setText(tVshowItem.getTitle());
+        holder.tvDate.setText(tVshowItem.getRelease_date());
+        holder.tvDescription.setText(tVshowItem.getOverview());
     }
 
     @Override
     public int getItemCount() {
-        return listTv.size();
+        return getTvList().size();
     }
 
-    public class TVViewHolder extends RecyclerView.ViewHolder {
+    class TVViewHolder extends RecyclerView.ViewHolder {
         ImageView imgPhoto;
         TextView tvTitle, tvDate, tvDescription;
 
-        public TVViewHolder(@NonNull View itemView) {
+        TVViewHolder(@NonNull View itemView) {
             super(itemView);
             imgPhoto = itemView.findViewById(R.id.img_photo_tv);
             tvTitle = itemView.findViewById(R.id.txt_title_tv);
             tvDate = itemView.findViewById(R.id.txt_date_tv);
             tvDescription = itemView.findViewById(R.id.txt_description_tv);
-        }
 
-        public void bind(TVshowItem tVshowItem) {
-            String url_image = "https://image.tmdb.org/t/p/w500" + tVshowItem.getPoster_path();
-            Glide.with(itemView.getContext())
-                    .load(url_image)
-                    .into(imgPhoto);
-            tvTitle.setText(tVshowItem.getTitle());
-            tvDate.setText(tVshowItem.getRelease_date());
-            tvDescription.setText(tVshowItem.getOverview());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickCallback.onItemClicked(listTv.get(getAdapterPosition()));
+                    int position = getAdapterPosition();
+                    Intent intent = new Intent(activity, DetailTVActivity.class);
+                    Uri uri = Uri.parse(CONTENT_URI_TV + "/" + getTvList().get(position).getId());
+                    intent.setData(uri);
+                    intent.putExtra(DetailTVActivity.EXTRA_POSITION_TV, position);
+                    intent.putExtra(DetailTVActivity.EXTRA_TV, listTv.get(position));
+                    activity.startActivityForResult(intent, DetailTVActivity.REQUEST_UPDATE_TV);
                 }
             });
         }

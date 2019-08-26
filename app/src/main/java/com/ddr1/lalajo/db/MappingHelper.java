@@ -3,6 +3,7 @@ package com.ddr1.lalajo.db;
 import android.database.Cursor;
 
 import com.ddr1.lalajo.model.MovieItem;
+import com.ddr1.lalajo.model.TVshowItem;
 
 import java.util.ArrayList;
 
@@ -14,6 +15,15 @@ import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.VOTE;
 import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.LANGUAGE;
 import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.POPULARITY;
 import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.OVERVIEW;
+
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.ID_TV;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.POSTER_TV;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.TITLE_TV;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.RELEASE_DATE_TV;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.VOTE_TV;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.LANGUAGE_TV;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.POPULARITY_TV;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.OVERVIEW_TV;
 
 public class MappingHelper {
 
@@ -33,5 +43,23 @@ public class MappingHelper {
             movieList.add(new MovieItem(id, poster_path, title, release_date, vote_average, original_language, popularity, overview));
         }
         return movieList;
+    }
+
+    public static ArrayList<TVshowItem> mapCursorToArrayList_TV(Cursor tvCursor) {
+
+        ArrayList<TVshowItem> tVshowItems = new ArrayList<>();
+
+        while (tvCursor.moveToNext()) {
+            int id = tvCursor.getInt(tvCursor.getColumnIndexOrThrow(ID_TV));
+            String poster_path = tvCursor.getString(tvCursor.getColumnIndexOrThrow(POSTER_TV));
+            String title = tvCursor.getString(tvCursor.getColumnIndexOrThrow(TITLE_TV));
+            String release_date = tvCursor.getString(tvCursor.getColumnIndexOrThrow(RELEASE_DATE_TV));
+            String vote_average = tvCursor.getString(tvCursor.getColumnIndexOrThrow(VOTE_TV));
+            String original_language = tvCursor.getString(tvCursor.getColumnIndexOrThrow(LANGUAGE_TV));
+            String popularity = tvCursor.getString(tvCursor.getColumnIndexOrThrow(POPULARITY_TV));
+            String overview = tvCursor.getString(tvCursor.getColumnIndexOrThrow(OVERVIEW_TV));
+            tVshowItems.add(new TVshowItem(id, poster_path, title, release_date, vote_average, original_language, popularity, overview));
+        }
+        return tVshowItems;
     }
 }

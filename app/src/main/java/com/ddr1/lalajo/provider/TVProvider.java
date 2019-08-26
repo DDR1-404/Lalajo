@@ -10,27 +10,25 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 
 import com.ddr1.lalajo.db.MovieHelper;
-import com.ddr1.lalajo.view.favorite.FavoriteMovieFragment;
+import com.ddr1.lalajo.view.favorite.FavoriteTVFragment;
 
 import java.util.Objects;
 
-import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.AUTHORITY;
-import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.CONTENT_URI;
-import static com.ddr1.lalajo.db.DatabaseContract.MoviesColumns.TABLE_MOVIE;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.AUTHORITY_TV;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.CONTENT_URI_TV;
+import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.TABLE_TV;
 
 @SuppressLint("Registered")
-public class MovieProvider extends ContentProvider {
-
-    private static final int MOVIE = 1;
-    private static final int MOVIE_ID = 2;
-
+public class TVProvider extends ContentProvider {
+    private static final int TV = 1;
+    private static final int TV_ID = 2;
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
-        sUriMatcher.addURI(AUTHORITY, TABLE_MOVIE, MOVIE);
-        sUriMatcher.addURI(AUTHORITY,
-                TABLE_MOVIE + "/#",
-                MOVIE_ID);
+        sUriMatcher.addURI(AUTHORITY_TV, TABLE_TV, TV);
+        sUriMatcher.addURI(AUTHORITY_TV,
+                TABLE_TV + "/#",
+                TV_ID);
     }
 
     private MovieHelper movieHelper;
@@ -46,11 +44,11 @@ public class MovieProvider extends ContentProvider {
         movieHelper.open();
         Cursor cursor;
         switch (sUriMatcher.match(uri)) {
-            case MOVIE:
-                cursor = movieHelper.queryProviderMovie();
+            case TV:
+                cursor = movieHelper.queryProviderTv();
                 break;
-            case MOVIE_ID:
-                cursor = movieHelper.queryByIdProviderMovie(uri.getLastPathSegment());
+            case TV_ID:
+                cursor = movieHelper.queryByIdProviderTv(uri.getLastPathSegment());
                 break;
             default:
                 cursor = null;
@@ -65,34 +63,32 @@ public class MovieProvider extends ContentProvider {
         return null;
     }
 
-
     @Override
     public Uri insert(@NonNull Uri uri, ContentValues contentValues) {
         movieHelper.open();
         long added;
-        if (sUriMatcher.match(uri) == MOVIE) {
-            added = movieHelper.insertProviderMovie(contentValues);
+        if (sUriMatcher.match(uri) == TV) {
+            added = movieHelper.insertProviderTv(contentValues);
         } else {
             added = 0;
         }
 
-        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI, new FavoriteMovieFragment.DataObserver(new Handler(), getContext()));
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI_TV, new FavoriteTVFragment.DataObserver(new Handler(), getContext()));
 
-        return Uri.parse(CONTENT_URI + "/" + added);
+        return Uri.parse(CONTENT_URI_TV + "/" + added);
     }
-
 
     @Override
     public int update(@NonNull Uri uri, ContentValues contentValues, String s, String[] strings) {
         movieHelper.open();
         int updated;
-        if (sUriMatcher.match(uri) == MOVIE_ID) {
-            updated = movieHelper.updateProviderMovie(uri.getLastPathSegment(), contentValues);
+        if (sUriMatcher.match(uri) == TV_ID) {
+            updated = movieHelper.updateProviderTv(uri.getLastPathSegment(), contentValues);
         } else {
             updated = 0;
         }
 
-        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI, new FavoriteMovieFragment.DataObserver(new Handler(), getContext()));
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI_TV, new FavoriteTVFragment.DataObserver(new Handler(), getContext()));
 
         return updated;
     }
@@ -101,14 +97,16 @@ public class MovieProvider extends ContentProvider {
     public int delete(@NonNull Uri uri, String s, String[] strings) {
         movieHelper.open();
         int deleted;
-        if (sUriMatcher.match(uri) == MOVIE_ID) {
-            deleted = movieHelper.deleteProviderMovie(uri.getLastPathSegment());
+        if (sUriMatcher.match(uri) == TV_ID) {
+            deleted = movieHelper.deleteProviderTv(uri.getLastPathSegment());
         } else {
             deleted = 0;
         }
 
-        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI, new FavoriteMovieFragment.DataObserver(new Handler(), getContext()));
+        Objects.requireNonNull(getContext()).getContentResolver().notifyChange(CONTENT_URI_TV, new FavoriteTVFragment.DataObserver(new Handler(), getContext()));
 
         return deleted;
     }
+
+
 }

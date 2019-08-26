@@ -1,9 +1,15 @@
 package com.ddr1.lalajo.model;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.ddr1.lalajo.db.DatabaseContract;
+
 import org.json.JSONObject;
+
+import static com.ddr1.lalajo.db.DatabaseContract.getColumnInt;
+import static com.ddr1.lalajo.db.DatabaseContract.getColumnString;
 
 public class TVshowItem implements Parcelable {
     private int id;
@@ -14,6 +20,28 @@ public class TVshowItem implements Parcelable {
     private String original_language;
     private String popularity;
     private String overview;
+
+    public TVshowItem(int id, String poster_path, String title, String release_date, String vote_average, String original_language, String popularity, String overview) {
+        this.id = id;
+        this.poster_path = poster_path;
+        this.title = title;
+        this.release_date = release_date;
+        this.vote_average = vote_average;
+        this.original_language = original_language;
+        this.popularity = popularity;
+        this.overview = overview;
+    }
+
+    public TVshowItem(Cursor cursor) {
+        this.id = getColumnInt(cursor, DatabaseContract.TVColumns.ID_TV);
+        this.poster_path = getColumnString(cursor, DatabaseContract.TVColumns.POSTER_TV);
+        this.title = getColumnString(cursor, DatabaseContract.TVColumns.TITLE_TV);
+        this.release_date = getColumnString(cursor, DatabaseContract.TVColumns.RELEASE_DATE_TV);
+        this.vote_average = getColumnString(cursor, DatabaseContract.TVColumns.VOTE_TV);
+        this.original_language = getColumnString(cursor, DatabaseContract.TVColumns.LANGUAGE_TV);
+        this.popularity = getColumnString(cursor, DatabaseContract.TVColumns.POPULARITY_TV);
+        this.overview = getColumnString(cursor, DatabaseContract.TVColumns.OVERVIEW_TV);
+    }
 
     public int getId() {
         return id;
@@ -124,7 +152,7 @@ public class TVshowItem implements Parcelable {
     public TVshowItem() {
     }
 
-    protected TVshowItem(Parcel in) {
+    private TVshowItem(Parcel in) {
         this.id = in.readInt();
         this.poster_path = in.readString();
         this.title = in.readString();
