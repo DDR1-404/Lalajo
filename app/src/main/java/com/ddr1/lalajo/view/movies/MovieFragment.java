@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,7 @@ public class MovieFragment extends Fragment {
 
     private MovieAdapter adapter;
     private ProgressBar progressBar;
+    RecyclerView recyclerView;
 
 
     public MovieFragment() {
@@ -38,22 +40,36 @@ public class MovieFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_movie, container, false);
+        return inflater.inflate(R.layout.fragment_movie, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.rv_movies);
+        progressBar = view.findViewById(R.id.progressBar);
+
+        showData();
+        showLoading(true);
+
+    }
+
+    private void showData() {
         adapter = new MovieAdapter(getActivity());
-        RecyclerView recyclerView = view.findViewById(R.id.rv_movies);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
-
-        progressBar = view.findViewById(R.id.progressBar);
 
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getMovies().observe(this, getMovie);
         mainViewModel.setMovies();
+    }
 
-        showLoading(true);
-
-        return view;
+    private void showLoading(Boolean state) {
+        if (state) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     private Observer<ArrayList<MovieItem>> getMovie = new Observer<ArrayList<MovieItem>>() {
@@ -67,13 +83,5 @@ public class MovieFragment extends Fragment {
 
         }
     };
-
-    private void showLoading(Boolean state) {
-        if (state) {
-            progressBar.setVisibility(View.VISIBLE);
-        } else {
-            progressBar.setVisibility(View.GONE);
-        }
-    }
 
 }

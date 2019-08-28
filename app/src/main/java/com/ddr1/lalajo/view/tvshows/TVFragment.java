@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 public class TVFragment extends Fragment {
     private TVAdapter adapter;
     private ProgressBar progressBar;
+    RecyclerView recyclerView;
 
 
     public TVFragment() {
@@ -37,21 +39,37 @@ public class TVFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tv, container, false);
+        return inflater.inflate(R.layout.fragment_tv, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.rv_tv_shows);
+        progressBar = view.findViewById(R.id.progressBar_tv);
+
+        showData();
+        showLoading(true);
+
+    }
+
+    private void showData() {
         adapter = new TVAdapter(getActivity());
-        RecyclerView recyclerView = view.findViewById(R.id.rv_tv_shows);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
-
-        progressBar = view.findViewById(R.id.progressBar_tv);
 
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getTvs().observe(this, getTv);
         mainViewModel.setTvs();
+    }
 
-        showLoading(true);
-
-        return view;
+    private void showLoading(Boolean state) {
+        if (state) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     private Observer<ArrayList<TVshowItem>> getTv = new Observer<ArrayList<TVshowItem>>() {
@@ -66,12 +84,5 @@ public class TVFragment extends Fragment {
         }
     };
 
-    private void showLoading(Boolean state) {
-        if (state) {
-            progressBar.setVisibility(View.VISIBLE);
-        } else {
-            progressBar.setVisibility(View.GONE);
-        }
-    }
 
 }
