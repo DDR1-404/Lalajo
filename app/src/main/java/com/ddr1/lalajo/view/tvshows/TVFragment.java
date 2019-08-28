@@ -47,7 +47,7 @@ public class TVFragment extends Fragment {
 
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getTvs().observe(this, getTv);
-        mainViewModel.setTvs("EXTRA_TV");
+        mainViewModel.setTvs();
 
         showLoading(true);
 

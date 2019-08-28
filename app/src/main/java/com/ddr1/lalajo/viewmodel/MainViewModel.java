@@ -21,7 +21,7 @@ public class MainViewModel extends ViewModel {
     private static final String API_KEY = "e148de1e526fe445f5906ccc85ee7fb4";
     private MutableLiveData<ArrayList<MovieItem>> listMovies = new MutableLiveData<>();
 
-    public void setMovies(final String movies) {
+    public void setMovies() {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<MovieItem> listMovieItems = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class MainViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<TVshowItem>> listTvs = new MutableLiveData<>();
 
-    public void setTvs(final String tvs) {
+    public void setTvs() {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<TVshowItem> listTvItems = new ArrayList<>();
 

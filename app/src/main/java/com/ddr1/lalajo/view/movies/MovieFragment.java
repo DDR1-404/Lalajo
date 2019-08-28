@@ -49,7 +49,7 @@ public class MovieFragment extends Fragment {
 
         MainViewModel mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.getMovies().observe(this, getMovie);
-        mainViewModel.setMovies("EXTRA_MOVIE");
+        mainViewModel.setMovies();
 
         showLoading(true);
 

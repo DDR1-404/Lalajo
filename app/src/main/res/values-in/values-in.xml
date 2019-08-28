@@ -20,4 +20,5 @@
     <string name="favorite">Favorit</string>
     <string name="add_favorite">Tambah Favorit</string>
     <string name="delete_favorite">Hapus Favorit</string>
+    <string name="this_image">Ini Gambar</string>
 </resources>

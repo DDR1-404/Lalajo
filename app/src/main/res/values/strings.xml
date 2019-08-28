@@ -19,4 +19,5 @@
     <string name="favorite">Favorite</string>
     <string name="add_favorite">Add Favorite</string>
     <string name="delete_favorite">Delete Favorite</string>
+    <string name="this_image">This image</string>
 </resources>
