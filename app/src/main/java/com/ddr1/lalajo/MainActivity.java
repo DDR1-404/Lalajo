@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
         setupFm(getSupportFragmentManager(), viewPager);
         viewPager.setCurrentItem(0);
-        viewPager.setOnPageChangeListener(new PageChange());
+        viewPager.addOnPageChangeListener(new PageChange());
     }
 
     public static void setupFm(FragmentManager fragmentManager, ViewPager viewPager){
