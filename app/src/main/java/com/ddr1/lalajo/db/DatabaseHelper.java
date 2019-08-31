@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             TVColumns.OVERVIEW_TV
     );
 
-    DatabaseHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

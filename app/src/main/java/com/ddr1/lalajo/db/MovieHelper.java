@@ -15,7 +15,7 @@ import static com.ddr1.lalajo.db.DatabaseContract.TVColumns.TABLE_TV;
 
 
 public class MovieHelper {
-    private static final String DATABASE_TABLE = TABLE_MOVIE;
+    public static final String DATABASE_TABLE = TABLE_MOVIE;
     private static final String DATABASE_TABLE_TV = TABLE_TV;
     private final DatabaseHelper dataBaseHelper;
     private static MovieHelper INSTANCE;
@@ -75,7 +75,8 @@ public class MovieHelper {
 
     //TV
     public Cursor queryByIdProviderTv(String id) {
-        return database.query(DATABASE_TABLE_TV, null
+        return database.query(DATABASE_TABLE_TV,
+                null
                 , ID_TV + " = ?"
                 , new String[]{id}
                 , null

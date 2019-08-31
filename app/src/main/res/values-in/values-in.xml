@@ -22,4 +22,7 @@
     <string name="delete_favorite">Hapus Favorit</string>
     <string name="this_image">Ini Gambar</string>
     <string name="search">Pencarian</string>
+    <string name="appwidget_text">Favorit</string>
+    <string name="add_widget">Tambah widget</string>
+    <string name="empty_text">TIDAK ADA DATA</string>
 </resources>
