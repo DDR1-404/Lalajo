@@ -22,7 +22,6 @@ import android.widget.ProgressBar;
 import com.ddr1.lalajo.R;
 import com.ddr1.lalajo.adapter.TVAdapter;
 import com.ddr1.lalajo.model.TVshowItem;
-import com.ddr1.lalajo.view.toolbar.SearchMovieActivity;
 import com.ddr1.lalajo.view.toolbar.SearchTVActivity;
 import com.ddr1.lalajo.viewmodel.MainViewModel;
 

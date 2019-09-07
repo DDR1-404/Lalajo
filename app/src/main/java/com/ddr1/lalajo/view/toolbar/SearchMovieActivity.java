@@ -2,8 +2,8 @@ package com.ddr1.lalajo.view.toolbar;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import com.ddr1.lalajo.R;
 import com.ddr1.lalajo.adapter.SearchAdapter;
 import com.ddr1.lalajo.model.MovieItem;
-import com.ddr1.lalajo.model.TVshowItem;
 import com.ddr1.lalajo.viewmodel.MainViewModel;
 
 import java.util.ArrayList;
