@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.ddr1.lalajo.LoadTVCallback;
+import com.ddr1.lalajo.callback.LoadTVCallback;
 import com.ddr1.lalajo.R;
 import com.ddr1.lalajo.adapter.TVAdapter;
 import com.ddr1.lalajo.model.TVshowItem;

@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.ddr1.lalajo.LoadMovieCallback;
+import com.ddr1.lalajo.callback.LoadMovieCallback;
 import com.ddr1.lalajo.R;
 import com.ddr1.lalajo.adapter.MovieAdapter;
 import com.ddr1.lalajo.model.MovieItem;

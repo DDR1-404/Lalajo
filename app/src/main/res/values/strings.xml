@@ -24,5 +24,10 @@
     <string name="search">Search</string>
     <string name="appwidget_text">Favorite</string>
     <string name="add_widget">Add widget</string>
-    <string name="empty_text">NO DATA</string>
+    <string name="empty_text">Empty</string>
+    <string name="notif">Notification</string>
+    <string name="title_daily">Daily Reminder </string>
+    <string name="title_release">Release Today Reminder</string>
+    <string name="message_daily">Back to Application Movie Catalogue</string>
+    <string name="no_yet_Nmovies">No new films have been released today.</string>
 </resources>

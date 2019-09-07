@@ -24,5 +24,10 @@
     <string name="search">Pencarian</string>
     <string name="appwidget_text">Favorit</string>
     <string name="add_widget">Tambah widget</string>
-    <string name="empty_text">TIDAK ADA DATA</string>
+    <string name="empty_text">Tidak ada data</string>
+    <string name="notif">Notifikasi</string>
+    <string name="title_daily">Pengingat Harian</string>
+    <string name="title_release">Rilis Pengingat Hari Ini</string>
+    <string name="message_daily">Kembali ke Aplikasi Movie Catalogue</string>
+    <string name="no_yet_Nmovies">Tidak ada film baru yang dirilis hari ini.</string>
 </resources>
