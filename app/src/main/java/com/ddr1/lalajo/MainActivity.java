@@ -8,14 +8,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.ddr1.lalajo.adapter.FragmentAdapter;
 import com.ddr1.lalajo.view.favorite.FavoriteFragment;
 import com.ddr1.lalajo.view.movies.MovieFragment;
-import com.ddr1.lalajo.view.settings.NotifActivity;
+import com.ddr1.lalajo.view.toolbar.NotifActivity;
 import com.ddr1.lalajo.view.tvshows.TVFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -92,13 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.settings, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

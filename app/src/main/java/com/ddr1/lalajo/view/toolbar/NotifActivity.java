@@ -1,10 +1,11 @@
-package com.ddr1.lalajo.view.settings;
+package com.ddr1.lalajo.view.toolbar;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.ddr1.lalajo.R;
 import com.ddr1.lalajo.notification.DailyReminder;
@@ -39,10 +40,6 @@ public class NotifActivity extends AppCompatActivity implements CompoundButton.O
         releasePref = getSharedPreferences(RELEASE, MODE_PRIVATE);
         releaseSw.setChecked(releasePref.getBoolean(RELEASE, false));
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
     }
 
     @Override
@@ -55,11 +52,13 @@ public class NotifActivity extends AppCompatActivity implements CompoundButton.O
                     SharedPreferences.Editor editor = getSharedPreferences(DAILY, MODE_PRIVATE).edit();
                     editor.putBoolean(DAILY, true);
                     editor.apply();
+                    Toast.makeText(getApplicationContext(), "Daily alarm set up", Toast.LENGTH_SHORT).show();
                 } else {
                     dailyReminder.cancelDailyAlarm(getApplicationContext());
                     SharedPreferences.Editor editor = getSharedPreferences(DAILY, MODE_PRIVATE).edit();
                     editor.putBoolean(DAILY, false);
                     editor.apply();
+                    Toast.makeText(getApplicationContext(), "Daily alarm off", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -70,11 +69,14 @@ public class NotifActivity extends AppCompatActivity implements CompoundButton.O
                     SharedPreferences.Editor editor = getSharedPreferences(RELEASE, MODE_PRIVATE).edit();
                     editor.putBoolean(RELEASE, true);
                     editor.apply();
+                    Toast.makeText(getApplicationContext(), "Release today alarm set up", Toast.LENGTH_SHORT).show();
                 } else {
                     releaseReminder.cancelAlarm(getApplicationContext());
                     SharedPreferences.Editor editor = getSharedPreferences(RELEASE, MODE_PRIVATE).edit();
                     editor.putBoolean(RELEASE, false);
                     editor.apply();
+                    Toast.makeText(getApplicationContext(), "Release today alarm off", Toast.LENGTH_SHORT).show();
+
                 }
                 break;
         }

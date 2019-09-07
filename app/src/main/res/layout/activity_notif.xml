@@ -7,7 +7,7 @@
     android:layout_marginRight="8dp"
     android:layout_marginLeft="8dp"
     android:orientation="vertical"
-    tools:context=".view.settings.NotifActivity">
+    tools:context=".view.toolbar.NotifActivity">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

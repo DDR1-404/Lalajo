@@ -23,8 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".view.toolbar.SearchTVActivity"></activity>
+        <activity android:name=".view.toolbar.SearchMovieActivity" />
         <activity
-            android:name=".view.settings.NotifActivity"
+            android:name=".view.toolbar.NotifActivity"
             android:parentActivityName=".MainActivity" />
 
         <receiver android:name=".widget.ImageBannerWidget">
@@ -36,27 +38,33 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/image_banner_widget_info" />
         </receiver>
-
         <receiver
             android:name=".notification.DailyReminder"
             android:enabled="true"
             android:exported="true"
             android:permission="true"
             tools:ignore="ExportedReceiver" />
-
         <receiver
             android:name=".notification.ReleaseReminder"
             android:enabled="true"
             android:exported="true"
             android:permission="true"
-            tools:ignore="ExportedReceiver"/>
+            tools:ignore="ExportedReceiver" />
 
         <activity
-            android:name=".view.tvshows.DetailTVActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".view.movies.DetailMovieActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".view.tvshows.DetailTVActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

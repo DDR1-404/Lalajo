@@ -13,7 +13,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
 
 import com.ddr1.lalajo.MainActivity;
 import com.ddr1.lalajo.R;
@@ -43,7 +42,7 @@ public class ReleaseReminder extends BroadcastReceiver {
     private final static String GROUP_KEY = "group_key";
     private final static String TIME_FORMAT = "HH:mm";
     public int ID_RELEASE = 110;
-    private int notificationId = 0;
+    private int notificationId;
 
     ArrayList<MovieItem> movieItems;
     List<NotificationItem> notificationItems = new ArrayList<>();
@@ -168,9 +167,6 @@ public class ReleaseReminder extends BroadcastReceiver {
         if (alarmManager != null) {
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
-
-        Toast.makeText(context, "Release today alarm set up", Toast.LENGTH_SHORT).show();
-
     }
 
     public void cancelAlarm(Context context) {
@@ -183,8 +179,6 @@ public class ReleaseReminder extends BroadcastReceiver {
         if (alarmManager != null) {
             alarmManager.cancel(pendingIntent);
         }
-
-        Toast.makeText(context, "Release today alarm off", Toast.LENGTH_SHORT).show();
     }
 
     public boolean isDateInvalid(String date, String format) {

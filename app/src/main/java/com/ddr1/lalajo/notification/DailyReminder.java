@@ -99,8 +99,6 @@ public class DailyReminder extends BroadcastReceiver {
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         }
 
-        Toast.makeText(context, "Daily alarm set up", Toast.LENGTH_SHORT).show();
-
     }
 
     public void cancelDailyAlarm(Context context) {
@@ -114,7 +112,6 @@ public class DailyReminder extends BroadcastReceiver {
             alarmManager.cancel(pendingIntent);
         }
 
-        Toast.makeText(context, "Release today alarm off", Toast.LENGTH_SHORT).show();
     }
 
     public boolean isDateInvalid(String date, String format) {
