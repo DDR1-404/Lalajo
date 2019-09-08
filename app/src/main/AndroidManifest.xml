@@ -84,8 +84,8 @@
         <provider
             android:name=".provider.TVProvider"
             android:authorities="com.ddr1.lalajo.tv"
-            android:grantUriPermissions="true"
             android:exported="true"
+            android:grantUriPermissions="true"
             android:readPermission="com.ddr1.lalajo.tv.READ_DATABASE"
             android:writePermission="com.ddr1.lalajo.tv.WRITE_DATABASE" />
 

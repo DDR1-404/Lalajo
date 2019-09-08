@@ -8,9 +8,6 @@
     <uses-permission android:name="com.ddr1.lalajo.movie.READ_DATABASE" />
     <uses-permission android:name="com.ddr1.lalajo.movie.WRITE_DATABASE" />
 
-    <uses-permission android:name="com.ddr1.lalajo.tv.READ_DATABASE" />
-    <uses-permission android:name="com.ddr1.lalajo.tv.WRITE_DATABASE" />
-
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
@@ -20,7 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.DetailTVActivity" />
         <activity android:name=".view.DetailMovieActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
