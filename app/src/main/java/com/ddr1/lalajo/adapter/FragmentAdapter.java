@@ -1,14 +1,14 @@
 package com.ddr1.lalajo.adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentAdapter extends FragmentPagerAdapter {
-    private List<android.support.v4.app.Fragment> Fragment = new ArrayList<>();
+    private List<androidx.fragment.app.Fragment> Fragment = new ArrayList<>();
     private List<String> NamePage = new ArrayList<>();
 
     public FragmentAdapter(FragmentManager manager) {

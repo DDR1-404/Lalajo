@@ -8,7 +8,7 @@ public class DatabaseContract {
 
     public static final class MoviesColumns implements BaseColumns {
 
-        public static final String AUTHORITY = "com.ddr1.lalajo";
+        public static final String AUTHORITY = "com.ddr1.lalajo.movie";
         private static final String SCHEME = "content";
 
         public static final String TABLE_MOVIE = "movie";

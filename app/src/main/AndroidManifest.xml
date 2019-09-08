@@ -8,10 +8,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
-        android:name="com.ddr1.lalajo.READ_DATABASE"
+        android:name="com.ddr1.lalajo.movie.READ_DATABASE"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.ddr1.lalajo.WRITE_DATABASE"
+        android:name="com.ddr1.lalajo.movie.WRITE_DATABASE"
         android:protectionLevel="normal" />
 
     <application
@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.toolbar.SearchTVActivity"></activity>
+        <activity android:name=".view.toolbar.SearchTVActivity" />
         <activity android:name=".view.toolbar.SearchMovieActivity" />
         <activity
             android:name=".view.toolbar.NotifActivity"
@@ -77,13 +77,14 @@
 
         <provider
             android:name=".provider.MovieProvider"
-            android:authorities="com.ddr1.lalajo"
+            android:authorities="com.ddr1.lalajo.movie"
             android:exported="true"
-            android:readPermission="com.ddr1.lalajo.READ_DATABASE"
-            android:writePermission="com.ddr1.lalajo.WRITE_DATABASE" />
+            android:readPermission="com.ddr1.lalajo.movie.READ_DATABASE"
+            android:writePermission="com.ddr1.lalajo.movie.WRITE_DATABASE" />
         <provider
             android:name=".provider.TVProvider"
             android:authorities="com.ddr1.lalajo.tv"
+            android:grantUriPermissions="true"
             android:exported="true"
             android:readPermission="com.ddr1.lalajo.tv.READ_DATABASE"
             android:writePermission="com.ddr1.lalajo.tv.WRITE_DATABASE" />

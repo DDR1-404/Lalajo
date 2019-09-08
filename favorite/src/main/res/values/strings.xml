@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Favorite</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_movie">Movie</string>
+    <string name="title_tv">TV Show</string>
+    <string name="title_favorite">Favorite</string>
+
+    <string name="movie_title">Avenger Start</string>
+    <string name="movie_date">13 January 1999</string>
+    <string name="movie_description">Dengan ini saya selaku panitia hajatyan mantan apalah dayaku menyatakan kemerdekaan Indonesia oleh sebab itu openjajahan diatas dunia harus dihapuskna</string>
+    <string name="overview">Overview</string>
+    <string name="change_language_settings">Change Language Settings</string>
+    <string name="sub"> Indonesia</string>
+    <string name="release_date">Release Date: </string>
+    <string name="date"> 2019</string>
+    <string name="rating">Rating: </string>
+    <string name="ratings"> 9.9</string>
+    <string name="popularity">Popularity: </string>
+    <string name="_130_000">130,000</string>
+    <string name="favorite">Favorite</string>
+    <string name="add_favorite">Add Favorite</string>
+    <string name="delete_favorite">Delete Favorite</string>
+    <string name="this_image">This image</string>
+    <string name="search">Search</string>
+    <string name="appwidget_text">Favorite</string>
+    <string name="empty_text">Empty</string>
+    <string name="notif">Notification</string>
+    <string name="title_daily">Daily Reminder </string>
+    <string name="title_release">Release Today Reminder</string>
+    <string name="message_daily">Back to Application Movie Catalogue</string>
+    <string name="no_yet_Nmovies">No new films have been released today.</string>
+</resources>

@@ -7,7 +7,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.ddr1.lalajo.db.MovieHelper;
 import com.ddr1.lalajo.view.favorite.FavoriteMovieFragment;
